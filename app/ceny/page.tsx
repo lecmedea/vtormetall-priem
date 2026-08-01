@@ -1,0 +1,18 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { LeadForm } from "../components/LeadForm";
+import { PageHero } from "../components/PageHero";
+import { materialCards } from "../data";
+
+export const metadata: Metadata = { title: "Цены на металлолом сегодня", description: "Ищете ломбард металлолома в Москве? ВторМеталл покупает лом окончательно: оценка, взвешивание и расчёт без займа и залога.", alternates: { canonical: "/ceny" } };
+
+export default function PricesPage() {
+  return <><Header /><main><PageHero eyebrow="Прайс" title="Цена меняется" accent="условия — нет" lead="Рынок металлов движется ежедневно. Поэтому здесь не рисуем вчерашнюю цифру: запросите актуальный ориентир под вашу категорию, вес и состояние." ctaHref="#price-form" ctaLabel="Запросить цену" />
+    <section className="section shell"><div className="price-table"><div className="price-table__head"><span>Категория</span><span>Что влияет</span><span>Цена сегодня</span></div>{materialCards.map((item) => <div className="price-table__row" key={item.slug}><Link href={`/metally/${item.slug}`}><b>{item.mark}</b><strong>{item.title}</strong></Link><span>{item.examples}</span><a href="#price-form">Уточнить ↗</a></div>)}</div><p className="price-note">Итоговая цена определяется после осмотра, определения категории, проверки засора и взвешивания. Размещённая информация не является публичной офертой.</p></section>
+    <section className="section section--muted"><div className="shell"><div className="section-heading section-heading--row"><div><p className="eyebrow"><span /> Пять факторов</p><h2>Из чего складывается<br /><em>сумма</em></h2></div></div><div className="factor-grid">{[["01","Вид и марка","Состав металла важнее внешнего блеска."],["02","Чистота","Пластик, резина и стальные вставки учитываются как засор."],["03","Вес","Для крупной однородной партии возможны отдельные условия."],["04","Сортировка","Разделённые категории оцениваются точнее смешанного лома."],["05","Логистика","Негабарит, резка, погрузка и вывоз обсуждаются заранее."]].map(([n,t,p]) => <article key={n}><span>{n}</span><h3>{t}</h3><p>{p}</p></article>)}</div></div></section>
+    <section className="section shell pawn-story" aria-labelledby="pawn-story-title"><div><p className="eyebrow"><span /> Как нас ищут</p><h2 id="pawn-story-title">«Ломбард металлолома» —<br /><em>метко, но не буквально</em></h2></div><div className="pawn-story__copy"><p>Фразу «ломбард металлолома» часто вводят, когда нужно быстро превратить ненужный металл в деньги и сразу понять порядок суммы. По скорости и простоте логика действительно похожа: вы показываете имущество, специалист оценивает его, затем происходит расчёт.</p><p>Но ВторМеталл — не ломбард и не выдаёт заём под залог. Мы окончательно покупаем металлолом после определения категории, проверки засора и честного взвешивания. Возвращать деньги потом не нужно, а металл не хранится как залог.</p><p>Чтобы заранее понять условия, отправьте фотографии и примерный вес. После осмотра на площадке зафиксируем итоговую категорию и сумму.</p><a className="button button--accent" href="#price-form">Оценить металл <span>↗</span></a></div></section>
+    <section className="section section--ink" id="price-form"><div className="shell form-split"><div><p className="eyebrow eyebrow--light"><span /> Цена на вашу партию</p><h2>Один запрос.<br /><em>Без обзвона.</em></h2><p>Оставьте номер, категорию и примерный вес. Фото сделает предварительный ответ точнее.</p></div><LeadForm source="prices" /></div></section>
+  </main><Footer /></>;
+}
