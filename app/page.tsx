@@ -4,6 +4,7 @@ import { GrappleScroll } from "./components/GrappleScroll";
 import { Header } from "./components/Header";
 import { ImageBrief } from "./components/ImageBrief";
 import { materialCards, phones } from "./data";
+import { homePhotos } from "./media";
 
 const serviceCards = [
   {
@@ -72,7 +73,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero__visual" aria-label="Место для главного изображения">
+          <div className="hero__visual" aria-label="Приём металлолома на Рябиновой улице">
             <div className="hero__stamp">ЧЕСТНЫЙ ВЕС<br />БЫСТРЫЙ РАСЧЁТ</div>
             <div className="hero__plate">
               <span>МОСКВА</span>
@@ -81,8 +82,10 @@ export default function Home() {
             </div>
             <ImageBrief
               title="Главный кадр: приёмка металла"
-              prompt="Фотореалистичная промышленная фотосъёмка: российский пункт приёма металлолома в Москве на рассвете, аккуратные штабеля меди, алюминия и чёрного металла, крупный план электронных весов, рабочий в тёмной спецодежде и салатовом сигнальном жилете, брутальная современная цветокоррекция, графитовые тени, кислотно-зелёные акценты, без текста и логотипов, горизонтальный кадр 4:5, высокая детализация, правдоподобная российская локация."
+              src={homePhotos.hero.src}
+              alt={homePhotos.hero.alt}
               compact
+              priority
             />
           </div>
         </section>
@@ -179,14 +182,15 @@ export default function Home() {
         <section className="section shell image-section" aria-labelledby="photo-title">
           <div className="section-heading section-heading--row">
             <div>
-              <p className="eyebrow"><span /> Изображение для блока</p>
-              <h2 id="photo-title">Покажите процесс,<br /><em>а не фотосток</em></h2>
+              <p className="eyebrow"><span /> Прозрачная оценка</p>
+              <h2 id="photo-title">Вес и категория<br /><em>перед глазами</em></h2>
             </div>
-            <p>Пока реальных фотографий нет, здесь оставлен точный промпт для ChatGPT Image 2.</p>
+            <p>Сначала определяем категорию и засор, затем взвешиваем. Итоговые условия согласовываем до расчёта.</p>
           </div>
           <ImageBrief
             title="Честное взвешивание на площадке"
-            prompt="Документальная рекламная фотография российского пункта приёма металлолома: крупный план электронного табло промышленных весов, руки приёмщика в рабочих перчатках, рядом видна партия чистой меди и кабеля, клиент наблюдает за цифрами, атмосфера прозрачной честной сделки, натуральный дневной свет, графитово-зелёная палитра, эффект дорогой промышленной кампании, без постановочной улыбки, без текста, без логотипов, горизонтальный формат 16:9."
+            src={homePhotos.weighing.src}
+            alt={homePhotos.weighing.alt}
           />
         </section>
 

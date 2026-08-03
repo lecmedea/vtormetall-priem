@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { JsonLd } from "./components/JsonLd";
 import { SITE_URL } from "./site";
 
 export const metadata: Metadata = {
@@ -9,7 +10,17 @@ export const metadata: Metadata = {
   applicationName: "ВторМеталл",
   keywords: ["приём металлолома Москва", "сдать металл", "цены на лом", "приём меди", "вывоз металлолома", "ломбард металлолома", "Рябиновая 53А"],
   alternates: { canonical: "/", languages: { "ru-RU": "/" } },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
     yandex: process.env.YANDEX_SITE_VERIFICATION,
@@ -24,7 +35,9 @@ export const metadata: Metadata = {
     title: "ВторМеталл — приём металлолома в Москве",
     description: "Честный вес, понятные условия, оценка и вывоз по согласованию.",
     siteName: "ВторМеталл",
+    images: [{ url: "/assets/seo-photos/certified-weighing.jpg", width: 1672, height: 940, alt: "Взвешивание металлолома на пункте ВторМеталл в Москве" }],
   },
+  twitter: { card: "summary_large_image", title: "ВторМеталл — приём металлолома в Москве", description: "Приём чёрного и цветного лома на Рябиновой улице.", images: ["/assets/seo-photos/certified-weighing.jpg"] },
   other: { "codex-preview": "development" },
 };
 
@@ -38,18 +51,24 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "RecyclingCenter",
+    "@id": `${SITE_URL}/#business`,
     name: "ВторМеталл",
     url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    image: `${SITE_URL}/assets/seo-photos/certified-weighing.jpg`,
     telephone: ["+7 999 996 22 06", "+7 916 348 95 36"],
-    address: { "@type": "PostalAddress", streetAddress: "Рябиновая улица, 53А, стр. 5", addressLocality: "Москва", addressCountry: "RU" },
-    openingHours: "Mo-Su 00:00-23:59",
+    address: { "@type": "PostalAddress", streetAddress: "Рябиновая улица, 53А, стр. 5", addressLocality: "Москва", addressRegion: "Москва", postalCode: "121471", addressCountry: "RU" },
+    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" }],
+    hasMap: "https://yandex.ru/navi/org/vtormetall/121976909154",
+    priceRange: "₽₽",
+    currenciesAccepted: "RUB",
     areaServed: ["Москва", "Московская область"],
     sameAs: ["https://yandex.ru/navi/org/vtormetall/121976909154"],
   };
   return (
     <html lang="ru">
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
+        <JsonLd data={localBusiness} />
         {children}
       </body>
     </html>

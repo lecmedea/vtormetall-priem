@@ -7,8 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return paths.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: new Date("2026-08-01"),
-    changeFrequency: path === "/ceny" ? "daily" : "monthly",
-    priority: path === "" ? 1 : .7,
+    lastModified: new Date("2026-08-04"),
+    changeFrequency: path === "/ceny" ? "daily" : path.startsWith("/blog") ? "weekly" : "monthly",
+    priority: path === "" ? 1 : ["/ceny", "/metally", "/uslugi", "/kontakty"].includes(path) ? .9 : .7,
   }));
 }

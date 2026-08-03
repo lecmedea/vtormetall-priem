@@ -1,13 +1,26 @@
-type Props = { title: string; prompt: string; compact?: boolean };
+type Props = {
+  title: string;
+  src: string;
+  alt: string;
+  compact?: boolean;
+  priority?: boolean;
+};
 
-export function ImageBrief({ title, prompt, compact = false }: Props) {
+export function ImageBrief({ title, src, alt, compact = false, priority = false }: Props) {
   return (
-    <div className={`image-brief${compact ? " image-brief--compact" : ""}`}>
-      <div className="image-brief__label"><span>IMAGE 02</span><strong>{title}</strong></div>
-      <details>
-        <summary>Промпт для ChatGPT Image 2 <span>+</span></summary>
-        <p>{prompt}</p>
-      </details>
-    </div>
+    <figure className={`image-brief${compact ? " image-brief--compact" : ""}`}>
+      {/* Generated photography is already compressed; explicit dimensions prevent layout shift. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        width={compact ? 1128 : 1672}
+        height={compact ? 1410 : 940}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+      />
+      <figcaption><span>ВТОРМЕТАЛЛ</span><strong>{title}</strong></figcaption>
+    </figure>
   );
 }

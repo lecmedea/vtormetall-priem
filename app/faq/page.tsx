@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { JsonLd } from "../components/JsonLd";
 import { PageHero } from "../components/PageHero";
 import { phones } from "../data";
+import { breadcrumbSchema } from "../seo";
 
 export const metadata: Metadata = { title: "Частые вопросы о сдаче металла", description: "Минимальный вес, точная цена, подготовка, документы, вывоз и оценка металлолома по фотографии.", alternates: { canonical: "/faq" } };
 const faq = [
@@ -17,7 +19,8 @@ const faq = [
 ];
 
 export default function FaqPage() {
-  return <><Header /><main><PageHero eyebrow="FAQ" title="Короткие ответы" accent="без воды" lead="Собрали вопросы, которые обычно возникают до первой поездки. Если вашей ситуации нет в списке — звоните напрямую." />
+  const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
+  return <><JsonLd data={[breadcrumbSchema([["Главная", "/"], ["Частые вопросы", "/faq"]]), faqSchema]} /><Header /><main><PageHero eyebrow="FAQ" title="Короткие ответы" accent="без воды" lead="Собрали вопросы, которые обычно возникают до первой поездки. Если вашей ситуации нет в списке — звоните напрямую." />
     <section className="section shell faq-list">{faq.map(([q,a], index) => <details key={q} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span><strong>{q}</strong><b>+</b></summary><p>{a}</p></details>)}</section>
     <section className="section section--acid"><div className="shell content-callout"><div><p className="eyebrow"><span /> Остался вопрос</p><h2>Спросите<br /><em>человека.</em></h2></div><div><p>Без ботов и длинного ожидания. Оба номера ведут напрямую к пункту.</p><div className="phone-pair">{phones.map((phone) => <a className="button button--dark" href={`tel:${phone.raw}`} key={phone.raw}>{phone.display} <span>↗</span></a>)}</div></div></div></section>
   </main><Footer /></>;
