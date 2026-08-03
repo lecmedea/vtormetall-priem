@@ -1,3 +1,14 @@
 import type { MetadataRoute } from "next";
 import { articles, materialCards, services } from "./data";
-export default function sitemap(): MetadataRoute.Sitemap { const base = "https://vtormetall-priem.lecmedea.chatgpt.site"; const paths = ["", "/ceny", "/metally", "/uslugi", "/o-kompanii", "/faq", "/blog", "/kontakty", "/otsenka", "/dokumenty", ...materialCards.map((x) => `/metally/${x.slug}`), ...services.map((x) => `/uslugi/${x.slug}`), ...articles.map((x) => `/blog/${x.slug}`)]; return paths.map((path) => ({ url: `${base}${path}`, lastModified: new Date("2026-08-01"), changeFrequency: path === "/ceny" ? "daily" : "monthly", priority: path === "" ? 1 : .7 })); }
+import { SITE_URL } from "./site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const paths = ["", "/ceny", "/metally", "/uslugi", "/o-kompanii", "/faq", "/blog", "/kontakty", "/otsenka", "/dokumenty", ...materialCards.map((x) => `/metally/${x.slug}`), ...services.map((x) => `/uslugi/${x.slug}`), ...articles.map((x) => `/blog/${x.slug}`)];
+
+  return paths.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date("2026-08-01"),
+    changeFrequency: path === "/ceny" ? "daily" : "monthly",
+    priority: path === "" ? 1 : .7,
+  }));
+}
