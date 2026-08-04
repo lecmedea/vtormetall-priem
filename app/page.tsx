@@ -94,6 +94,14 @@ export default function Home() {
           <div>МЕДЬ • КАБЕЛЬ • ЛАТУНЬ • АЛЮМИНИЙ • ЧУГУН • СТАЛЬ • НЕРЖАВЕЙКА • АККУМУЛЯТОРЫ • </div>
         </div>
 
+        <section className="calculator-promo shell" aria-labelledby="calculator-promo-title">
+          <Link href="/ceny#calculator" className="calculator-promo__link">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/calculator/calculator-banner.png" alt="Чёрный технологичный калькулятор стоимости металлолома" width="2048" height="683" loading="lazy" decoding="async" />
+            <span className="calculator-promo__copy"><small>Вес × категория × состояние</small><strong id="calculator-promo-title">КАЛЬКУЛЯТОР<br />ЛОМА</strong><b>Рассчитать ориентир →</b></span>
+          </Link>
+        </section>
+
         <section className="section shell" aria-labelledby="route-title">
           <div className="section-heading">
             <p className="eyebrow"><span /> Как сдать лом</p>

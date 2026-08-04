@@ -1,0 +1,69 @@
+{
+  "source": "https://www.lom-msk.ru/",
+  "sourceDate": "2026-08-04",
+  "updatedAt": "2026-08-04T04:06:00+03:00",
+  "currency": "RUB",
+  "unit": "kg",
+  "items": [
+    {
+      "slug": "chernyy-lom",
+      "name": "Чёрный лом",
+      "price": 22.5,
+      "qualifier": ""
+    },
+    {
+      "slug": "med",
+      "name": "Медь",
+      "price": 715.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "alyuminiy",
+      "name": "Алюминий",
+      "price": 175.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "svinec",
+      "name": "Свинец",
+      "price": 110.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "latun",
+      "name": "Латунь",
+      "price": 400.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "bronza",
+      "name": "Бронза",
+      "price": 410.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "nerzhaveyka",
+      "name": "Нержавейка",
+      "price": 80.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "kabel",
+      "name": "Кабель",
+      "price": 550.0,
+      "qualifier": "до"
+    },
+    {
+      "slug": "elektrodvigateli",
+      "name": "Электродвигатели",
+      "price": 55.0,
+      "qualifier": "от"
+    },
+    {
+      "slug": "akkumulyatory",
+      "name": "Аккумуляторы",
+      "price": 50.0,
+      "qualifier": "от"
+    }
+  ]
+}
